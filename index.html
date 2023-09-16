@@ -14,18 +14,26 @@
   </head>
   <body>
     <header class="header">
+      <a href="index.html">
+        <img class="logo" src="img/logo.jpg" alt="NYCU BME">
+      </a>
       <li class="nav-item">
         <a class="nav-item-child active" href="index.html"> Home </a>
       </li>
     </header>
     <div class="container">
       <form id="form_target" action="#" method="post" name="google">
-        <label for="grade">年級</label>
-        <select id="span_grade" name="span_grade"></select>
-        <label for="subject">科目</label>
-        <select id="span_subject" name="span_subject"></select>
-
-        <button id="button_target">click</button>
+        <fieldset id="span_grade">
+          <legend>年級</legend>
+        </fieldset>
+        <fieldset id="span_subject">
+          <legend>科目</legend>
+        </fieldset>
+        <div style="text-align: center">
+          <br></br>
+          <button id="button_target">click</button>
+          <button id="clear">clear</button>
+        </div>
       </form>
     </div>
     <div class="List">
