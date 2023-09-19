@@ -2,7 +2,7 @@
   115級學術部 致上
   沒錯 就是非常陽春的版本
   您的建議是我們改善的方向！
-  ver 1.0
+  ver 1.1
 -->
 
 <!DOCTYPE html>
@@ -13,28 +13,37 @@
     <script src="contro.js"></script>
   </head>
   <body>
-    <header class="header">
-      <a href="index.html">
-        <img class="logo" src="img/logo.jpg" alt="NYCU BME">
-      </a>
-      <li class="nav-item">
-        <a class="nav-item-child active" href="index.html"> Home </a>
-      </li>
-    </header>
-    <div class="container">
-      <form id="form_target" action="#" method="post" name="google">
-        <fieldset id="span_grade">
-          <legend>年級</legend>
-        </fieldset>
-        <fieldset id="span_subject">
-          <legend>科目</legend>
-        </fieldset>
-        <div style="text-align: center">
-          <br></br>
-          <button id="button_target">click</button>
-          <button id="clear">clear</button>
+    <div class="header">
+      <header>
+        <div class="logo_div">
+          <a href="index.html">
+            <img class="logo" src="img/logo.jpg" alt="NYCU BME" />
+          </a>
+          <h1 style="text-align: center">考古下載系統</h1>
+          <div><br />/*這裡是還沒<br />做好的分頁區*/</div>
         </div>
-      </form>
+
+        <!-- <div class="page_opt">
+          <a class="nav-item-child active" href="index.html"> Home </a>
+        </div> -->
+      </header>
+    </div>
+    <div class="container">
+      <div class="form">
+        <form id="form_target" action="#" method="post" name="google">
+          <fieldset id="span_grade">
+            <legend>年級</legend>
+          </fieldset>
+          <fieldset id="span_subject">
+            <legend>科目</legend>
+          </fieldset>
+          <div style="text-align: center">
+            <br />
+            <button id="button_target">click</button>
+            <button id="clear">clear</button>
+          </div>
+        </form>
+      </div>
     </div>
     <div class="List">
       <p style="text-align: center">
@@ -62,27 +71,8 @@
     </div>
   </body>
   <footer>
-    <div>team</div>
     <p style="text-align: center">
       © 2023 Copyright: NYCU BME | Developed by&nbsp;NYCU BME DEPT
-      <!-- <a href="https://github.com/Justin900429" target="_blank" rel="noreferrer"
-        >Justin</a
-      >
-      and&nbsp;<a
-        href="https://github.com/JoyceFang1213"
-        target="_blank"
-        rel="noreferrer"
-        >Joyce</a
-      > -->
     </p>
-    <!-- <p>
-      <a
-        href="https://github.com/nycu-ece-learn/ece-learn"
-        target="_blank"
-        rel="noreferrer"
-        >Source code</a
-      >
-      is released with MIT license.
-    </p> -->
   </footer>
 </html>
