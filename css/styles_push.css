@@ -1,19 +1,5 @@
 /* push page */
 
-.header {
-  height: 15vh;
-}
-
-.logo_div {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.logo {
-  width: 50px;
-  display: inline;
-}
-
 /* form part */
 input[type="text"],
 select,
