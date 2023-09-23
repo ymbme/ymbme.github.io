@@ -1,0 +1,42 @@
+/* pull page */
+
+h1 {
+  text-align: center;
+}
+
+.header {
+  height: 15vh;
+}
+
+.form {
+  padding: 100;
+  margin: 100;
+}
+
+.logo_div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  width: 50px;
+  display: inline;
+}
+
+#form_target {
+  padding: 1;
+  margin: 1;
+}
+
+.demonstrate {
+  border: 3px solid black;
+  width: 60%;
+  border-collapse: separate;
+  text-align: center;
+}
+.demonstrate tr:nth-child(even) {
+  background: #ccc;
+}
+.demonstrate tr:nth-child(odd) {
+  background: #fff;
+}
