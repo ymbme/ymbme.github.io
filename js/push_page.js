@@ -52,19 +52,19 @@ function reset() {
       option.textContent = "自訂";
       option.style.color = "blue";
       season.appendChild(option);
-      for (var i = 1; i < info["season"].length; i++) {
+      for (var i = 1; i < info["Opt_season"].length; i++) {
         var option = document.createElement("option");
-        option.value = info["season"][i];
-        option.textContent = info["season"][i];
+        option.value = info["Opt_season"][i];
+        option.textContent = info["Opt_season"][i];
         option.style.color = "blue";
         season.appendChild(option);
       }
 
       cls = document.getElementById("cls");
-      for (var i = 1; i < info["cls"].length; i++) {
+      for (var i = 1; i < info["Opt_cls"].length; i++) {
         var option = document.createElement("option");
-        option.value = info["cls"][i];
-        option.textContent = info["cls"][i];
+        option.value = info["Opt_cls"][i];
+        option.textContent = info["Opt_cls"][i];
         option.style.color = "blue";
         cls.appendChild(option);
       }
@@ -174,6 +174,5 @@ window.onload = function () {
     formData.forEach(function (value, key) {
       data[key] = value;
     });
-    console.log(data);
   });
 };

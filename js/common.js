@@ -24,6 +24,12 @@ function load_start() {
     }
     page_opt.appendChild(a);
   }
+  var footer = document.getElementsByTagName("footer");
+  var p = document.createElement("p");
+  p.textContent =
+    "© 2023 Copyright: NYCU BME | Developed by&nbsp;NYCU BME DEPT";
+  p.style = "text-align: center";
+  footer[0].appendChild(p);
   //   page_opt.innerHTML = "<br />/*這裡是還沒<br />做好的分頁區*/";
   //   page_opt.innerHTML = "";
 }
