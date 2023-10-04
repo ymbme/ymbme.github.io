@@ -8,8 +8,8 @@ function load_start() {
   console.log();
 
   var page = {
-    HOME: "index.html",
-    下載系統: "pull.html",
+    HOME: "home.html",
+    下載系統: "index.html",
     上傳系統: "push.html",
   };
   var page_opt = document.getElementById("page_opt");
@@ -26,8 +26,7 @@ function load_start() {
   }
   var footer = document.getElementsByTagName("footer");
   var p = document.createElement("p");
-  p.textContent =
-    "© 2023 Copyright: NYCU BME | Developed by&nbsp;NYCU BME DEPT";
+  p.textContent = "© 2023 Copyright: NYCU BME | Developed by\nNYCU BME DEPT";
   p.style = "text-align: center";
   footer[0].appendChild(p);
   //   page_opt.innerHTML = "<br />/*這裡是還沒<br />做好的分頁區*/";
