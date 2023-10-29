@@ -1,1 +1,13 @@
 /* home page */
+.demonstrate {
+  border: 3px solid black;
+  width: 60%;
+  border-collapse: separate;
+  text-align: center;
+}
+.demonstrate tr:nth-child(even) {
+  background: #ccc;
+}
+.demonstrate tr:nth-child(odd) {
+  background: #fff;
+}
