@@ -11,6 +11,7 @@ function load_start() {
     HOME: "home.html",
     下載系統: "index.html",
     上傳系統: "push.html",
+    // 回饋系統: "feedback.html",
   };
   var page_opt = document.getElementById("page_opt");
   for (key of Object.keys(page)) {

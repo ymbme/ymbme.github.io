@@ -5,24 +5,6 @@ var Subject_History = [];
 var grade_list = [];
 
 document.addEventListener("DOMContentLoaded", function () {
-  //data filter
-  var button = document.getElementById("button_target");
-  button.addEventListener("click", function (event) {
-    event.preventDefault();
-    var table = document.getElementById("table_target");
-    table.innerHTML =
-      "<tr><th>年級</th><th>科目</th><th>老師</th><th>季度</th><th>類別</th><th>檔案下載</th><th>檔案類別</th><th>檔案預覽</th><th>貢獻者</th></tr>";
-    var form = document.getElementById("form_target");
-    var formData = new FormData(form);
-    var sub_list = [];
-    formData.forEach(function (value, key) {
-      if (key.includes("subject_")) {
-        sub_list.push(str_parser(key, 8));
-      }
-    });
-    setTable(sub_list);
-  });
-
   // clear all subject checkbox
   var clear = document.getElementById("clear");
   clear.addEventListener("click", function (event) {
@@ -32,6 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
     for (var i = 0; i < checkboxes.length; i++) {
       checkboxes[i].checked = false;
     }
+    Subject_History = [];
+    var table = document.getElementById("table_target");
+    table.innerHTML =
+      "<tr><th>年級</th><th>科目</th><th>老師</th><th>季度</th><th>類別</th><th>檔案下載</th><th>檔案類別</th><th>檔案預覽</th><th>貢獻者</th></tr>";
   });
 
   //stupid method, To improve in the future
@@ -39,10 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("change", function (event) {
     var formData = new FormData(form);
     var g_all_flag = 1;
+    var s_all_flag = 1;
     var g_c_flag = 0;
     var tem_g_list = [];
     var tem_s_list = [];
+    var sub_list = [];
     formData.forEach(function (value, key) {
+      if (key.includes("subject_")) {
+        sub_list.push(str_parser(key, 8));
+      }
       if (key == "grade_ALL") {
         tem_g_list.push(key);
         for (var i = 1; i < Opt_grade.length; i++) {
@@ -56,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
           tem_g_list.push(key);
         } else {
           if (key == "subject_ALL") {
+            setTable(info["ALL"]);
             var subjectElement = document.getElementById("span_subject");
             var checkboxes = subjectElement.querySelectorAll(
               'input[type="checkbox"]'
@@ -65,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
               checkboxes[i].checked = true;
               tem_s_list.push(checkboxes[i].name);
             }
+            checkboxes[0].checked = false;
             s_all_flag = 0;
           } else {
             tem_s_list.push(key);
@@ -107,9 +100,12 @@ document.addEventListener("DOMContentLoaded", function () {
         Subject_History = tem_s_list;
       }
     }
-
     if (g_c_flag) {
       setSubject(grade_list, Subject_History);
+    }
+
+    if (s_all_flag) {
+      setTable(sub_list);
     }
   });
 });
@@ -126,44 +122,16 @@ function reset() {
     })
     .then((data) => {
       info = data;
-      keys = [
-        "grade",
-        "subject",
-        "teacher",
-        "season",
-        "cls",
-        "file_name",
-        "file_type",
-        "url",
-        "file_link",
-        "Donor",
-      ];
-      var table = document.getElementById("table_target");
-      for (var i = 0; i < Object.keys(data[keys[0]]).length; i++) {
-        newRow = table.insertRow();
-        for (key of keys) {
-          if (key == "file_name") {
-            newRow.insertCell().innerHTML = `<a href='${
-              data[`file_link`][i]
-            }'>${data[key][i]}</a>`;
-          } else {
-            if (key == "url") {
-              newRow.insertCell().innerHTML = `<a href='${data[key][i]}' target="_blank">預覽</a>`;
-            } else {
-              if (key == "file_link") {
-                continue;
-              } else {
-                newRow.insertCell().innerHTML = data[key][i];
-              }
-            }
-          }
-        }
-      }
+      setTable(info["ALL"]);
       gradeElement = document.getElementById("span_grade");
+      grade_list = info["Opt_grade"]
+        .filter((e) => e != "ALL")
+        .map((e) => "grade_" + e);
       for (var i = 0; i < Object.keys(data["Opt_grade"]).length; i++) {
         Opt_grade.push(`grade_${data["Opt_grade"][i]}`);
         Opt_Subject[data["Opt_grade"][i]] = data[data["Opt_grade"][i]];
         var input = document.createElement("input");
+        if (i) input.checked = true;
         var label = document.createElement("label");
         input.type = "checkbox";
         input.name = `grade_${data["Opt_grade"][i]}`;
@@ -259,6 +227,8 @@ function setTable(opt) {
     "Donor",
   ];
   var table = document.getElementById("table_target");
+  table.innerHTML =
+    "<tr><th>年級</th><th>科目</th><th>老師</th><th>季度</th><th>類別</th><th>檔案下載</th><th>檔案類別</th><th>檔案預覽</th><th>貢獻者</th></tr>";
   for (var i = 0; i < Object.keys(info[keys[0]]).length; i++) {
     if (opt.includes(info["subject"][i])) {
       newRow = table.insertRow();
