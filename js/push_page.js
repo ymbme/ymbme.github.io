@@ -1,16 +1,9 @@
-// var inputFile = document.getElementById("customFileInput");
-
-// inputFile.addEventListener("change", function (event) {
-//   var fileData = event.target.files[0]; // 檔案資訊
-// });
-
-// store all data to avoid lag
 var info;
 
+const gas_api =
+  "https://script.google.com/macros/s/AKfycbwGoYBJI2km7jV7PMfBKFMjjnbQZuGSPLM6y55bT-P1B61K7fl-3kjWNmAOr_rbuT9nmQ/exec";
 function reset() {
-  const gas_pull_api =
-    "https://script.google.com/macros/s/AKfycbwGoYBJI2km7jV7PMfBKFMjjnbQZuGSPLM6y55bT-P1B61K7fl-3kjWNmAOr_rbuT9nmQ/exec";
-  fetch(gas_pull_api)
+  fetch(gas_api)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -39,11 +32,6 @@ function reset() {
         option.style.color = "blue";
         subject.appendChild(option);
       }
-      var option = document.createElement("option");
-      option.value = "其他Other";
-      option.textContent = "其他Other";
-      option.style.color = "blue";
-      subject.appendChild(option);
 
       //set selection of season
       season = document.getElementById("season");
@@ -97,11 +85,13 @@ window.onload = function () {
       option.style.color = "blue";
       subject.appendChild(option);
     }
-    var option = document.createElement("option");
-    option.value = "其他Other";
-    option.textContent = "其他Other";
-    option.style.color = "blue";
-    subject.appendChild(option);
+    if (grade.value != "ALL") {
+      var option = document.createElement("option");
+      option.value = "其他Other";
+      option.textContent = "其他Other";
+      option.style.color = "blue";
+      subject.appendChild(option);
+    }
   });
 
   //if have new subject, domostrate input box
@@ -123,6 +113,7 @@ window.onload = function () {
       NewSeason.style.display = "block";
       NewSeason.required = true;
     } else {
+      NewSeason.value = "";
       NewSeason.style.display = "none";
       NewSeason.required = false;
     }
@@ -143,10 +134,11 @@ window.onload = function () {
 
   //show data info
   var inputFile = document.getElementById("customFileInput");
+  var fileData;
   inputFile.addEventListener(
     "change",
     function (e) {
-      var fileData = e.target.files[0]; // 檔案資訊
+      fileData = e.target.files[0]; // 檔案資訊
       var fileName = fileData.name; // 檔案名稱
       var fileType = fileData.type; // 檔案類型
       var fileSize = Math.floor(fileData.size * 0.001); // 檔案大小轉成kb
@@ -156,23 +148,7 @@ window.onload = function () {
       document.getElementById("file_type").innerText = fileType;
       document.getElementById("file_size").innerText = fileSize + "kb";
       document.getElementById("file_time").innerText = fileTime;
-
-      //no thumbnail
-      // document.getElementById("file_thumbnail").src =
-      //   URL.createObjectURL(fileData);
     },
     false
   );
-
-  //submit
-  var form = document.getElementById("form_target");
-  form.addEventListener("submit", function (event) {
-    //avoid reload
-    event.preventDefault();
-    var formData = new FormData(form);
-    var data = {};
-    formData.forEach(function (value, key) {
-      data[key] = value;
-    });
-  });
 };
