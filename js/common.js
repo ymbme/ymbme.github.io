@@ -11,19 +11,33 @@ function load_start() {
     HOME: "home.html",
     下載系統: "index.html",
     上傳系統: "push.html",
-    // 回饋系統: "feedback.html",
+    回饋系統: "login.html",
   };
   var page_opt = document.getElementById("page_opt");
-  for (key of Object.keys(page)) {
-    page_opt.appendChild(document.createElement("br"));
-    var a = document.createElement("a");
-    if (key == h1[0].textContent.slice(2)) {
-      a.textContent = "*" + key + "*";
-    } else {
-      a.textContent = key;
-      a.href = page[key];
+  if (h1[0].textContent == "回饋系統feedback") {
+    for (key of Object.keys(page)) {
+      page_opt.appendChild(document.createElement("br"));
+      var a = document.createElement("a");
+      if (key == "回饋系統") {
+        a.textContent = "*" + key + "*";
+      } else {
+        a.textContent = key;
+        a.href = page[key];
+      }
+      page_opt.appendChild(a);
     }
-    page_opt.appendChild(a);
+  } else {
+    for (key of Object.keys(page)) {
+      page_opt.appendChild(document.createElement("br"));
+      var a = document.createElement("a");
+      if (key == h1[0].textContent.slice(2)) {
+        a.textContent = "*" + key + "*";
+      } else {
+        a.textContent = key;
+        a.href = page[key];
+      }
+      page_opt.appendChild(a);
+    }
   }
   var footer = document.getElementsByTagName("footer");
   var p = document.createElement("p");

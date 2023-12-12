@@ -1,0 +1,62 @@
+<!-- 
+  112學術部 致上
+  沒錯 就是非常陽春的版本
+  您的建議是我們改善的方向！
+  ver 1.2
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>陽明醫工學術部</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/home.css" /> -->
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <script src="js/common.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <header>
+        <div class="logo_div">
+          <a href="index.html">
+            <img class="logo" src="img/logo.jpg" alt="NYCU BME" />
+          </a>
+          <h1 style="text-align: center">回饋系統feedback</h1>
+          <div id="page_opt"></div>
+        </div>
+      </header>
+    </div>
+    <div class="container" style="text-align: center">
+      若要填寫表單、課程評鑑等，需登入！！<br />
+      若未登入僅能觀看表單結果<br />(此部份尚在建構中)<br /><br />
+      <div style="text-align: center">
+        <input
+          type="submit"
+          id="oauthButton"
+          value="登入單一入口"
+          style="width: 150px; height: 40px; font-size: large"
+        />
+        <input
+          type="submit"
+          id="other"
+          value="訪客參觀"
+          style="width: 150px; height: 40px; font-size: large"
+        />
+      </div>
+    </div>
+  </body>
+  <script>
+    document
+      .getElementById("oauthButton")
+      .addEventListener("click", function () {
+        // 執行 OAuth 重定向
+        window.location.href =
+          "https://id.nycu.edu.tw/o/authorize/?client_id=FGcGG5HjwMoqTkmafxws1ggDsGG0hPZqSm8k5T0z&response_type=code&scope=profile&redirect_uri=https://ymbme.github.io/feedback.html";
+      });
+    document.getElementById("other").addEventListener("click", function () {
+      // 執行 OAuth 重定向
+      window.location.href =
+        "feedback.html?code=xYA7Rd9pJMkrTjGTVr3EE0xQoIig7a";
+    });
+  </script>
+  <footer></footer>
+</html>
