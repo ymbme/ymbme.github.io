@@ -11,7 +11,7 @@ function load_start() {
   };
 
   var page_opt = document.getElementById("page_opt");
-  if (h1[0].textContent == "回饋系統feedback") {
+  if (h1[0].textContent == "回饋系統Feedback") {
     for (key of Object.keys(page)) {
       page_opt.appendChild(document.createElement("br"));
       var a = document.createElement("a");

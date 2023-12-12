@@ -51,7 +51,7 @@ if (codeValue) {
       fetch(profileEndpoint, {
         method: "GET",
         headers: {
-          Authorization: "Bearer YOUR_ACCESS_TOKEN", // 將存取權杖加入請求的 Authorization 標頭中
+          Authorization: "Bearer " + accessToken, // 將存取權杖加入請求的 Authorization 標頭中
         },
       })
         .then((response) => {
