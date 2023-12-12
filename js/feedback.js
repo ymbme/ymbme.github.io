@@ -64,6 +64,12 @@ if (codeValue) {
         .then((data) => {
           // 獲得使用者資訊
           console.log("使用者資訊：", data);
+          var check_data = document.getElementById("checkid");
+          check_data.innerText =
+            "please check\n id：" +
+            data["username"] +
+            "\nemail：" +
+            data["email"];
         })
         .catch((error) => {
           // 處理錯誤
