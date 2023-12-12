@@ -1,3 +1,7 @@
+window.onload = function () {
+  load_start();
+};
+
 // 取得當前網址
 var currentURL = window.location.href;
 
@@ -40,6 +44,31 @@ if (codeValue) {
 
       // 使用存取權杖來存取受保護的資源等後續操作
       // 可以將 accessToken 用於 API 請求等
+      // 使用存取權杖來向身份提供者的端點獲取使用者資訊的URL
+      var profileEndpoint = "https://id.nycu.edu.tw/api/profile/";
+
+      // 要發送的 GET 請求
+      fetch(profileEndpoint, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer YOUR_ACCESS_TOKEN", // 將存取權杖加入請求的 Authorization 標頭中
+        },
+      })
+        .then((response) => {
+          // 請求成功，處理回應
+          if (!response.ok) {
+            throw new Error("獲取使用者資訊失敗");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // 獲得使用者資訊
+          console.log("使用者資訊：", data);
+        })
+        .catch((error) => {
+          // 處理錯誤
+          console.error("錯誤：", error);
+        });
     },
     error: function (error) {
       // 請求失敗，處理錯誤

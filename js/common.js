@@ -1,7 +1,3 @@
-// window.onload() = function(){
-
-// }
-
 function load_start() {
   //lay out pages area
   var h1 = document.getElementsByTagName("h1");
@@ -13,6 +9,7 @@ function load_start() {
     上傳系統: "push.html",
     回饋系統: "login.html",
   };
+
   var page_opt = document.getElementById("page_opt");
   if (h1[0].textContent == "回饋系統feedback") {
     for (key of Object.keys(page)) {

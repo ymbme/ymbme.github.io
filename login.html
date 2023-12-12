@@ -45,6 +45,9 @@
     </div>
   </body>
   <script>
+    window.onload = function () {
+      load_start();
+    };
     document
       .getElementById("oauthButton")
       .addEventListener("click", function () {
@@ -52,10 +55,10 @@
         window.location.href =
           "https://id.nycu.edu.tw/o/authorize/?client_id=FGcGG5HjwMoqTkmafxws1ggDsGG0hPZqSm8k5T0z&response_type=code&scope=profile&redirect_uri=https://ymbme.github.io/feedback.html";
       });
+
     document.getElementById("other").addEventListener("click", function () {
       // 執行 OAuth 重定向
-      window.location.href =
-        "feedback.html?code=xYA7Rd9pJMkrTjGTVr3EE0xQoIig7a";
+      window.location.href = "https://ymbme.github.io/feedback.html";
     });
   </script>
   <footer></footer>
