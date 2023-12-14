@@ -10,7 +10,7 @@
   margin: 1;
 }
 
-.demonstrate {
+/* .demonstrate {
   border: 3px solid black;
   width: 60%;
   border-collapse: separate;
@@ -21,4 +21,4 @@
 }
 .demonstrate tr:nth-child(odd) {
   background: #fff;
-}
+} */

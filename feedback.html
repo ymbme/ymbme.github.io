@@ -2,14 +2,13 @@
   112學術部 致上
   沒錯 就是非常陽春的版本
   您的建議是我們改善的方向！
-  ver 1.2
+  ver 1.4
 -->
 
 <!DOCTYPE html>
 <html>
   <head>
     <title>陽明醫工學術部</title>
-    <link rel="stylesheet" type="text/css" href="css/home.css" />
     <link rel="stylesheet" type="text/css" href="css/common.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/feedback.js"></script>
@@ -28,7 +27,54 @@
       </header>
     </div>
     <div id="checkid"></div>
-    <div class="container">寫回饋單 歷屆資料...<br />這邊還在建構中</div>
+    <div id="form_write"></div>
+    <div class="container">
+      <div id="form">
+        <form id="form_target" action="#" method="post" name="google">
+          <fieldset id="span_grade">
+            <legend>年級</legend>
+          </fieldset>
+          <fieldset id="span_subject">
+            <legend>科目</legend>
+          </fieldset>
+        </form>
+      </div>
+      資料還在無情彙整中<br />盡量期末趕出來;w;<br />目前只可看往年的資料
+      今年度尚未開放填寫
+
+      <div id="data">
+        <h1 id="h1_critic" style="display: flex; justify-content: center"></h1>
+        <div
+          id="show_critic"
+          style="text-align: center; display: flex; justify-content: center"
+        >
+          <table id="table_critic" class="demonstrate" style="width: 70%">
+            <tr>
+              <th>學期別</th>
+              <th>暱稱</th>
+              <th>成績</th>
+              <th>建議與心得</th>
+            </tr>
+          </table>
+        </div>
+        <h1 id="h1_point" style="display: flex; justify-content: center"></h1>
+        <a style="display: flex; justify-content: center"
+          >最低分1分 最高分5分<br
+        /></a>
+        <div id="show_point" style="display: flex; justify-content: center">
+          <table id="table_point" class="demonstrate" style="width: 70%">
+            <tr>
+              <th>課程名稱</th>
+              <th>學期別</th>
+              <th>選別</th>
+              <th>給分甜度</th>
+              <th>難度</th>
+              <th>課本重要程度</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
   </body>
   <footer></footer>
 </html>

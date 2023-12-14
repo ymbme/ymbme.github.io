@@ -1,6 +1,164 @@
+var info;
+var now_subject = [];
+
 window.onload = function () {
   load_start();
+  const gas_api =
+    "https://script.google.com/macros/s/AKfycbwDPQpKkFYCAEJsE1-nuDPo7amVVTAJC1tvlkOjkxuUBpGenlRyEgi7cPgejpUniJdJ/exec";
+  fetch(gas_api)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      info = data;
+      console.log(info);
+      document.getElementById("h1_point").innerHTML = "[總覽]的課程評鑑";
+      const table = document.getElementById("table_point");
+      for (course in info["total"]) {
+        for (season in info["total"][course]) {
+          newRow = table.insertRow();
+          newRow.insertCell().innerHTML = course;
+          newRow.insertCell().innerHTML = season;
+          newRow.insertCell().innerHTML = info["total"][course][season][3]; //type
+          newRow.insertCell().innerHTML = info["total"][course][season][0]; //sweet
+          newRow.insertCell().innerHTML = info["total"][course][season][1]; //difficult
+          newRow.insertCell().innerHTML = info["total"][course][season][2]; //important
+        }
+      }
+      var gradeElement = document.getElementById("span_grade");
+      var a = document.createElement("a");
+      a.textContent = `*${info["課程"][0]}*`;
+      a.id = "grade_" + 0;
+      a.style.padding = "5px";
+      gradeElement.appendChild(a);
+      GradeListener(a);
+      for (var i = 1; i < info["課程"].length; i += 1) {
+        var a = document.createElement("a");
+        a.textContent = `${info["課程"][i]}`;
+        a.href = "#";
+        a.id = "grade_" + i;
+        a.style.padding = "5px";
+        gradeElement.appendChild(a);
+        GradeListener(a);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 };
+
+function GradeListener(element) {
+  element.addEventListener("click", function (event) {
+    // 阻止超連結的默認行為
+    event.preventDefault();
+
+    //set table
+    const table = document.getElementById("table_point");
+    table.innerHTML =
+      "<tr><th>課程名稱</th><th>學期別</th><th>選別</th><th>給分甜度</th><th>難度</th><th>課本重要程度</th></tr>";
+
+    for (var i = 0; i < info["課程"].length; i += 1) {
+      var a = document.getElementById("grade_" + i);
+      a.href = "#";
+      a.textContent = a.textContent.replace(/^\*|\*$/g, "");
+    }
+    element.removeAttribute("href");
+    element.textContent = "*" + element.textContent + "*";
+
+    var subjectElement = document.getElementById("span_subject");
+
+    //clear the subject
+    subjectElement.innerHTML = "";
+    var legend = document.createElement("legend");
+    legend.textContent = "科目";
+    subjectElement.append(legend);
+    if (element.textContent != "*總覽*") {
+      //grade
+      var g = element.textContent.replace(/^\*|\*$/g, "");
+
+      //set title
+      document.getElementById("h1_point").innerHTML = `[${g}]的課程評鑑`;
+
+      //convient to set subject
+      now_subject = info[g];
+      for (var i = 0; i < info[g].length; i += 1) {
+        var a = document.createElement("a");
+        a.textContent = `${info[g][i]}`;
+        a.id = "subject_" + i;
+        a.href = "#";
+        a.style.padding = "10px";
+        subjectElement.appendChild(a);
+        SubjectListener(a);
+        if (!(i % 5) && i)
+          subjectElement.appendChild(document.createElement("br"));
+        //set table
+        var course = info[g][i];
+        if (info["total"][course]) {
+          for (season in info["total"][course]) {
+            newRow = table.insertRow();
+            newRow.insertCell().innerHTML = course;
+            newRow.insertCell().innerHTML = season;
+            newRow.insertCell().innerHTML = info["total"][course][season][3]; //type
+            newRow.insertCell().innerHTML = info["total"][course][season][0]; //sweet
+            newRow.insertCell().innerHTML = info["total"][course][season][1]; //difficult
+            newRow.insertCell().innerHTML = info["total"][course][season][2]; //important
+          }
+        }
+      }
+    } else {
+      document.getElementById("table_critic").innerHTML =
+        "<tr><th>學期別</th><th>暱稱</th><th>成績</th><th>建議與心得</th></tr>";
+      document.getElementById("h1_critic").innerHTML = "";
+
+      document.getElementById("h1_point").innerHTML = "[總覽]的課程評鑑";
+      for (course in info["total"]) {
+        for (season in info["total"][course]) {
+          newRow = table.insertRow();
+          newRow.insertCell().innerHTML = course;
+          newRow.insertCell().innerHTML = season;
+          newRow.insertCell().innerHTML = info["total"][course][season][3]; //type
+          newRow.insertCell().innerHTML = info["total"][course][season][0]; //sweet
+          newRow.insertCell().innerHTML = info["total"][course][season][1]; //difficult
+          newRow.insertCell().innerHTML = info["total"][course][season][2]; //important
+        }
+      }
+    }
+  });
+}
+
+function SubjectListener(element) {
+  element.addEventListener("click", function (event) {
+    // 阻止超連結的默認行為
+    event.preventDefault();
+    document.getElementById(
+      "h1_critic"
+    ).innerHTML = `${element.textContent} の 過來人心得`;
+    var table = document.getElementById("table_critic");
+    table.innerHTML =
+      "<tr><th>學期別</th><th>暱稱</th><th>成績</th><th>建議與心得</th></tr>";
+    var course = element.textContent;
+    for (season in info["critic"][course]) {
+      for (var i = 0; i < info["critic"][course][season].length; i += 1) {
+        newRow = table.insertRow();
+        newRow.insertCell().innerHTML = season;
+        newRow.insertCell().innerHTML = info["critic"][course][season][i][0]; //name
+        newRow.insertCell().innerHTML = info["critic"][course][season][i][1]; //grade
+        newRow.insertCell().innerHTML = info["critic"][course][season][i][2]; //critic
+      }
+    }
+
+    for (var i = 0; i < now_subject.length; i += 1) {
+      var a = document.getElementById("subject_" + i);
+      a.href = "#";
+      a.textContent = a.textContent.replace(/^\*|\*$/g, "");
+    }
+    element.removeAttribute("href");
+    element.textContent = "*" + element.textContent + "*";
+  });
+}
 
 // 取得當前網址
 var currentURL = window.location.href;
