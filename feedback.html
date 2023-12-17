@@ -10,6 +10,7 @@
   <head>
     <title>陽明醫工學術部</title>
     <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/feedback.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/feedback.js"></script>
     <script src="js/common.js"></script>
@@ -27,7 +28,11 @@
       </header>
     </div>
     <div id="checkid"></div>
-    <div id="form_write"></div>
+    <div
+      id="form_critic"
+      style="text-align: center; display: flex; justify-content: center"
+    ></div>
+    <div id="buttom_container" style="text-align: center"><br /><br /></div>
     <div class="container">
       <div id="form">
         <form id="form_target" action="#" method="post" name="google">
@@ -39,9 +44,13 @@
           </fieldset>
         </form>
       </div>
-      資料還在無情彙整中<br />盡量期末趕出來;w;<br />目前只可看往年的資料
-      今年度尚未開放填寫
-
+      <div style="text-align: center">
+        資料還在無情彙整中<br />盡量期末趕出來;w;<br />目前可填資料，但不確定有沒有bug，資料被吃就當倒楣<br />若不知道怎麼填沒關係，改天會有教學(希望有)
+        <br /><b style="font-size: large"
+          >可以點選年級然後選擇科目，就會有對應科目的過來人心得了<br />
+          Ex：點*大一* 然後 點*醫工導論*
+        </b>
+      </div>
       <div id="data">
         <h1 id="h1_critic" style="display: flex; justify-content: center"></h1>
         <div

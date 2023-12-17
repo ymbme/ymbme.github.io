@@ -13,7 +13,6 @@ function load_start() {
   var page_opt = document.getElementById("page_opt");
   if (h1[0].textContent == "回饋系統Feedback") {
     for (key of Object.keys(page)) {
-      page_opt.appendChild(document.createElement("br"));
       var a = document.createElement("a");
       if (key == "回饋系統") {
         a.textContent = "*" + key + "*";
@@ -22,10 +21,10 @@ function load_start() {
         a.href = page[key];
       }
       page_opt.appendChild(a);
+      page_opt.appendChild(document.createElement("br"));
     }
   } else {
     for (key of Object.keys(page)) {
-      page_opt.appendChild(document.createElement("br"));
       var a = document.createElement("a");
       if (key == h1[0].textContent.slice(2)) {
         a.textContent = "*" + key + "*";
@@ -34,13 +33,13 @@ function load_start() {
         a.href = page[key];
       }
       page_opt.appendChild(a);
+      page_opt.appendChild(document.createElement("br"));
     }
   }
+
   var footer = document.getElementsByTagName("footer");
   var p = document.createElement("p");
   p.textContent = "© 2023 Copyright: NYCU BME | Developed by\nNYCU BME DEPT";
   p.style = "text-align: center";
   footer[0].appendChild(p);
-  //   page_opt.innerHTML = "<br />/*這裡是還沒<br />做好的分頁區*/";
-  //   page_opt.innerHTML = "";
 }

@@ -25,21 +25,21 @@
         </div>
       </header>
     </div>
-    <div class="container" style="text-align: center">
-      若要填寫表單、課程評鑑等，需登入！！<br />
-      若未登入僅能觀看表單結果<br />(此部份尚在建構中)<br /><br />
+    <div class="container" style="text-align: center; font-size: larger">
+      <b>若要填寫課程評鑑等，需登入！！</b><br />
+      未登入者僅能觀看課程評鑑<br />(此部份尚在建構中，目前可查看課程評鑑)<br /><br />
       <div style="text-align: center">
         <input
           type="submit"
           id="oauthButton"
-          value="登入單一入口"
-          style="width: 150px; height: 40px; font-size: large"
+          value="單一入口登入"
+          style="width: 150px; height: 40px; font-size: larger"
         />
         <input
           type="submit"
           id="other"
           value="訪客參觀"
-          style="width: 150px; height: 40px; font-size: large"
+          style="width: 150px; height: 40px; font-size: larger"
         />
       </div>
     </div>
@@ -58,7 +58,7 @@
 
     document.getElementById("other").addEventListener("click", function () {
       // 執行 OAuth 重定向
-      window.location.href = "https://ymbme.github.io/feedback.html";
+      window.location.href = "feedback.html";
     });
   </script>
   <footer></footer>
