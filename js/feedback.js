@@ -1,6 +1,3 @@
-//if(codeValue)裡面的setTable記得取消註解
-//window.onload裡面的setCritic(112261012)記得刪掉
-
 var info;
 var now_subject = [];
 
@@ -479,7 +476,6 @@ function newSubjectListener(cell) {
 }
 
 function resetCritic(id, useremail, callback) {
-  console.log(info);
   const now = new Date();
   const month = now.getMonth() + 1;
 
