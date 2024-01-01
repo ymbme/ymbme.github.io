@@ -502,7 +502,8 @@ function resetCritic(id, useremail, callback) {
     //first semester
     // console.log("上學期");
     season = season * 10 + 1;
-    grade += 1;
+
+    if (month >= 9) grade += 1;
   }
   var check_data = document.getElementById("checkid");
   check_data.innerText = `please check\n id：${id}\ngrade：${map_grade[grade]}\nemail：${useremail}`;
